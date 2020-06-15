@@ -4,14 +4,15 @@ import Person from './Person/Person'
 class App extends Component {
   state = {
     persons: [
-      {name: 'Max', age: 28},
-      {name: 'John', age: 25},
-       {name: 'Jack', age: 20}
+      {id: 'asd1', name: 'Max', age: 28},
+      {id: 'asf1', name: 'John', age: 25},
+       {id: 'afe11', name: 'Jack', age: 20}
      ],
      showPersons: false
    }
    deletePersonHandler = (personIndex) => {
-     const persons = this.state.persons;
+    //  const persons = this.state.persons.slice(); - ALTERNATIVE
+    const persons = [...this.state.persons];
      persons.splice(personIndex, 1);
      this.setState({persons: persons});
    }
@@ -49,7 +50,8 @@ class App extends Component {
             return <Person
               click={() => this.deletePersonHandler(index)} 
               name={person.name} 
-              age={person.age}/>
+              age={person.age}
+              key={person.id}/>
           })}
         </div>
       );
